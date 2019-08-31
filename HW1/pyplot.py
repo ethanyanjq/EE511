@@ -36,7 +36,7 @@ class PyPlot(QWidget):
             self.layout.addWidget(self.mpl) 
             
         def plot_hist(self, data):  #网上抄的画图，两条曲线。
-            self.mpl.axes.hist(data, normed=0)
+            self.mpl.axes.hist(data, density=False, bins=len(data))
             self.mpl.draw()   #将图形输出到界面上
             
             #self.mpl.axes.hist(Y, bins=40, normed=0, facecolor="blue", edgecolor="black")
