@@ -15,11 +15,11 @@ from pyplot import PyPlot
 
 def flip_coin(iterations, times, prob):
     binary_list = []
-    for k in iterations:
+    for k in range(iterations):
         rational_result = np.random.rand(times)
         f = 0
-        for i in times:
-            if (rational_result[i]>=prob):
+        for i in rational_result:
+            if (i>=prob):
                 f += 1
         binary_list.append(f)
     return binary_list    
@@ -44,12 +44,13 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     
     @pyqtSlot()
     def on_pushButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        #if (self.radioButton.isChecked()):
-            
+        self.PyPlot.clear_plot()
+        times = int(self.lineEdit.text())
+        prob = float(self.lineEdit_2.text())
+        iterations = int(self.lineEdit_3.text())
+        if (self.radioButton.isChecked()):
+            head_array = flip_coin(iterations, times, prob)
+            self.PyPlot.plot_hist(head_array)
     
     @pyqtSlot()
     def on_pushButton_2_clicked(self):

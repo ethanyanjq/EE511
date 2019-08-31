@@ -35,12 +35,11 @@ class PyPlot(QWidget):
             self.mpl = MyMplCanvas(self, width=0, height=0, dpi=100) 
             self.layout.addWidget(self.mpl) 
             
-        def plot(self, data):  #网上抄的画图，两条曲线。
-            #self.mpl.axes.hist(Y, bins=40, normed=0, facecolor="blue", edgecolor="black")
-            self.mpl.axes.hist(data, normed=1)
-            
+        def plot_hist(self, data):  #网上抄的画图，两条曲线。
+            self.mpl.axes.hist(data, normed=0)
             self.mpl.draw()   #将图形输出到界面上
             
+            #self.mpl.axes.hist(Y, bins=40, normed=0, facecolor="blue", edgecolor="black")
 #        def plot(self, num, times, prob):  #网上抄的画图，两条曲线。
 #            X = np.linspace(1, 100, 100)
 #

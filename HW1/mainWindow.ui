@@ -140,10 +140,10 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>370</x>
       <y>10</y>
-      <width>493</width>
-      <height>111</height>
+      <width>491</width>
+      <height>121</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -166,20 +166,11 @@
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
-         <pointsize>15</pointsize>
+         <pointsize>12</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Propability Set (0-1):</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_2">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Probability&lt;/p&gt;&lt;p&gt;(0-1):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -187,7 +178,7 @@
       <widget class="QLabel" name="label_3">
        <property name="font">
         <font>
-         <pointsize>15</pointsize>
+         <pointsize>12</pointsize>
         </font>
        </property>
        <property name="text">
@@ -207,6 +198,36 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Iterations:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="lineEdit_3">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
@@ -215,7 +236,7 @@
       <x>870</x>
       <y>10</y>
       <width>191</width>
-      <height>111</height>
+      <height>121</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
