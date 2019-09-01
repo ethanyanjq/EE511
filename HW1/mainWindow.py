@@ -79,29 +79,38 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
         self.lineEdit_2.clear()
         self.lineEdit_3.clear()
         self.lineEdit_4.clear()
+        self.lineEdit.setReadOnly(False)
+        self.lineEdit_2.setReadOnly(False)
+        self.lineEdit_3.setReadOnly(False)
         self.textBrowser.clear()
         
     @pyqtSlot()
     def on_radioButton_2_clicked(self):
         self.on_pushButton_2_clicked()        
         self.lineEdit_2.setText("0.8")
+        self.lineEdit_2.setReadOnly(True)
         
     @pyqtSlot()
     def on_radioButton_clicked(self):
         self.on_pushButton_2_clicked()
         self.lineEdit.setText("50")
+        self.lineEdit.setReadOnly(True)
         
     @pyqtSlot()
     def on_radioButton_3_clicked(self):
         self.on_pushButton_2_clicked()
         self.lineEdit_3.setText("1")
         self.lineEdit.setText("100") 
+        self.lineEdit_3.setReadOnly(True)
+        self.lineEdit.setReadOnly(True)
         
     
     @pyqtSlot()
     def on_radioButton_4_clicked(self):
         self.on_pushButton_2_clicked()
         self.lineEdit_4.setText("Input user-specified number of heads here")
+        self.textBrowser.append("Input user-specified number and click 'Generate'")
+        self.textBrowser.append("You don't need to fill in the blanks on the right")
 
 
 if __name__ == "__main__":

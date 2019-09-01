@@ -1,4 +1,3 @@
-import sys 
 import matplotlib       #导入matplotlib 
 matplotlib.use("Qt5Agg")     #声明 matplotlib 使用的是Qt5的库
 from PyQt5 import QtCore        
