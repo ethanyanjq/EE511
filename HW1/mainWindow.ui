@@ -112,7 +112,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Input user-specified number of heads here</string>
+        <string/>
        </property>
       </widget>
      </item>

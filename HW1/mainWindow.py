@@ -42,24 +42,31 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     
     @pyqtSlot()
     def on_pushButton_clicked(self):
-
-        self.PyPlot.clear_plot()
-        times = int(self.lineEdit.text())
-        prob = float(self.lineEdit_2.text())
-        iterations = int(self.lineEdit_3.text())
-        if (self.radioButton.isChecked() or self.radioButton_2.isChecked()):
-            head_array = flip_coin(iterations, times, prob)
-            self.PyPlot.plot_hist(head_array, times)
-        elif(self.radioButton_3.isChecked()):
-            flip_100times = np.random.rand(100)
-            for i in range(times):
-                if (flip_100times[i]>=prob):
-                    flip_100times[i] = 1
-                else:
-                    flip_100times[i] = 0
-            self.PyPlot.plot(flip_100times)
-        elif(self.radioButton_4.isChecked()):
-            
+        if (self.radioButton_4.isChecked()):
+            specified_num = int(self.lineEdit_4.text())
+            k = i = 0
+            while (i<=100000 and k<specified_num):
+                random_num = np.random.uniform()
+                if (random_num>=0.5): k += 1
+                i += 1
+            else:
+                self.textBrowser.append("Reached user-specified number of head until %d times of tossing" %(i))
+        else:
+            self.PyPlot.clear_plot()
+            times = int(self.lineEdit.text())
+            prob = float(self.lineEdit_2.text())
+            iterations = int(self.lineEdit_3.text())
+            if (self.radioButton.isChecked() or self.radioButton_2.isChecked()):
+                head_array = flip_coin(iterations, times, prob)
+                self.PyPlot.plot_hist(head_array, times)
+            elif(self.radioButton_3.isChecked()):
+                flip_100times = np.random.rand(100)
+                for i in range(times):
+                    if (flip_100times[i]>=prob):
+                        flip_100times[i] = 1
+                    else:
+                        flip_100times[i] = 0
+                self.PyPlot.plot(flip_100times)
             
     
     @pyqtSlot()
