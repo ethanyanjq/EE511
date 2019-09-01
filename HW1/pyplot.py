@@ -33,20 +33,17 @@ class PyPlot(QWidget):
         def initUi(self):   #对绘制的图形进行布局，并生成MyMplCanvas对象。
             self.layout = QVBoxLayout(self) 
             self.mpl = MyMplCanvas(self, width=0, height=0, dpi=100) 
-            self.layout.addWidget(self.mpl) 
+            self.layout.addWidget(self.mpl)
             
-        def plot_hist(self, data):  #网上抄的画图，两条曲线。
-            self.mpl.axes.hist(data, density=False, bins=len(data))
+        def plot_hist(self, data, times):  #网上抄的画图，两条曲线。
+            self.mpl.axes.hist(data, bins = (len(data)), range=(0, times), density=False )
             self.mpl.draw()   #将图形输出到界面上
             
-            #self.mpl.axes.hist(Y, bins=40, normed=0, facecolor="blue", edgecolor="black")
-#        def plot(self, num, times, prob):  #网上抄的画图，两条曲线。
-#            X = np.linspace(1, 100, 100)
-#
-#            C = np.random.rand(100)
-#            #self.mpl.axes.plot(X,C)   #生成COS图
-#            self.mpl.axes.scatter(X, C)   #生成COS图
-#            self.mpl.draw()   #将图形输出到界面上
+
+        def plot(self, data):  #网上抄的画图，两条曲线。
+            x_array = np.linspace(1, len(data), len(data))
+            self.mpl.axes.plot(x_array,data)   #生成COS图
+            self.mpl.draw()   #将图形输出到界面上
             
         def clear_plot(self):
             self.mpl.axes.cla()  #清除全部绘图
