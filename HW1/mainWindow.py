@@ -22,7 +22,43 @@ def flip_coin(iterations, times, prob):
             if (i>=prob):
                 f += 1
         binary_list.append(f)
+    if (iterations == 1):
+        runs = longest_run(rational_result)
+        ui.textBrowser.append("The longest run of heads is %d" %(max(runs)))
     return binary_list
+    
+def longest_run(data):
+    i = j = 0
+    result = []
+    while(i<len(data) and j<len(data)):
+        if (round(data[i]) == 1):
+            j = i+1
+            counts = 1
+            while (j<len(data)):
+                if (round(data[j]) == 1):
+                    counts += 1
+                    j += 1
+                else:
+                    i = j
+                    break
+            result.append(counts)
+        else:
+            i += 1
+    return result
+    
+#def longest_run(data):
+#    temp_count = 1
+#    i = 0
+#    while (i<len(data)):
+#        longest_count = 1
+#        for j in range(i+1, len(data)):
+#            if (round(data[j]) == round(data[i]) and data[j]>=0.5):
+#                longest_count += 1
+#            else:
+#                i = j+1
+#                break
+#        if (longest_count >= temp_count): temp_count = longest_count
+#    return temp_count
 
 class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     """
@@ -43,6 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     @pyqtSlot()
     def on_pushButton_clicked(self):
         if (self.radioButton_4.isChecked()):
+            self.PyPlot.clear_plot()
             specified_num = int(self.lineEdit_4.text())
             k = i = 0
             while (i<=100000 and k<specified_num):
@@ -50,23 +87,19 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
                 if (random_num>=0.5): k += 1
                 i += 1
             else:
-                self.textBrowser.append("Reached user-specified number of head until %d times of tossing" %(i))
+                self.textBrowser.append("Reached user-specified number of head after %d times of tossing" %(i))
         else:
             self.PyPlot.clear_plot()
             times = int(self.lineEdit.text())
-            prob = float(self.lineEdit_2.text())
+            prob = 1-float(self.lineEdit_2.text())
             iterations = int(self.lineEdit_3.text())
-            if (self.radioButton.isChecked() or self.radioButton_2.isChecked()):
+            if ((self.radioButton.isChecked() )or self.radioButton_2.isChecked()):
                 head_array = flip_coin(iterations, times, prob)
                 self.PyPlot.plot_hist(head_array, times)
             elif(self.radioButton_3.isChecked()):
                 flip_100times = np.random.rand(100)
-                for i in range(times):
-                    if (flip_100times[i]>=prob):
-                        flip_100times[i] = 1
-                    else:
-                        flip_100times[i] = 0
-                self.PyPlot.plot(flip_100times)
+                array1 = longest_run(flip_100times)
+                self.PyPlot.plot_hist(array1, 100)
             
     
     @pyqtSlot()
@@ -100,9 +133,11 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     def on_radioButton_3_clicked(self):
         self.on_pushButton_2_clicked()
         self.lineEdit_3.setText("1")
-        self.lineEdit.setText("100") 
+        self.lineEdit.setText("100")
+        self.lineEdit_2.setText("0.5") 
         self.lineEdit_3.setReadOnly(True)
         self.lineEdit.setReadOnly(True)
+        self.lineEdit_2.setReadOnly(True)
         
     
     @pyqtSlot()

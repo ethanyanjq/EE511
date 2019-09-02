@@ -39,10 +39,10 @@ class PyPlot(QWidget):
             self.mpl.draw()   #将图形输出到界面上
             
 
-        def plot(self, data):  #网上抄的画图，两条曲线。
-            x_array = np.linspace(1, len(data), len(data))
-            self.mpl.axes.plot(x_array,data)   #生成COS图
-            self.mpl.draw()   #将图形输出到界面上
+#        def plot(self, data):  #网上抄的画图，两条曲线。
+#            x_array = np.linspace(1, len(data), len(data))
+#            self.mpl.axes.plot(x_array,data)   #生成COS图
+#            self.mpl.draw()   #将图形输出到界面上
             
         def clear_plot(self):
             self.mpl.axes.cla()  #清除全部绘图
