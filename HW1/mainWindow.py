@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""
-Module implementing MainWindow.
-"""
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
@@ -25,6 +22,13 @@ def flip_coin(iterations, times, prob):
     if (iterations == 1):
         runs = longest_run(rational_result)
         ui.textBrowser.append("The longest run of heads is %d" %(max(runs)))
+        f = 0
+        freq = []
+        for i in range(len(rational_result)):
+            if (rational_result[i] >= (1 - prob)):
+                f += 1
+            freq.append(f/(i+1))
+        binary_list = freq
     return binary_list
     
 def longest_run(data):
@@ -45,37 +49,15 @@ def longest_run(data):
         else:
             i += 1
     return result
-    
-#def longest_run(data):
-#    temp_count = 1
-#    i = 0
-#    while (i<len(data)):
-#        longest_count = 1
-#        for j in range(i+1, len(data)):
-#            if (round(data[j]) == round(data[i]) and data[j]>=0.5):
-#                longest_count += 1
-#            else:
-#                i = j+1
-#                break
-#        if (longest_count >= temp_count): temp_count = longest_count
-#    return temp_count
 
 class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
-    """
-    Class documentation goes here.
-    """
+
     def __init__(self, parent=None):
-        """
-        Constructor
-        
-        @param parent reference to the parent widget
-        @type QWidget
-        """
+
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         
 
-    
     @pyqtSlot()
     def on_pushButton_clicked(self):
         if (self.radioButton_4.isChecked()):
@@ -95,7 +77,10 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
             iterations = int(self.lineEdit_3.text())
             if ((self.radioButton.isChecked() )or self.radioButton_2.isChecked()):
                 head_array = flip_coin(iterations, times, prob)
-                self.PyPlot.plot_hist(head_array, times)
+                if (iterations == 1):
+                    self.PyPlot.plot(head_array)
+                else:
+                    self.PyPlot.plot_hist(head_array, times)
             elif(self.radioButton_3.isChecked()):
                 flip_100times = np.random.rand(100)
                 array1 = longest_run(flip_100times)
@@ -104,9 +89,6 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
     
     @pyqtSlot()
     def on_pushButton_2_clicked(self):
-        """
-        Slot documentation goes here.
-        """
         self.PyPlot.clear_plot()
         self.lineEdit.clear()
         self.lineEdit_2.clear()
@@ -148,6 +130,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
         self.textBrowser.append("You don't need to fill in the blanks on the right")
 
 
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -155,3 +138,4 @@ if __name__ == "__main__":
     ui.show()
     sys.exit(app.exec_())
     
+

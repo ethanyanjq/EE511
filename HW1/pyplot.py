@@ -34,15 +34,19 @@ class PyPlot(QWidget):
             self.mpl = MyMplCanvas(self, width=0, height=0, dpi=100) 
             self.layout.addWidget(self.mpl)
             
-        def plot_hist(self, data, times):  #网上抄的画图，两条曲线。
+        def plot_hist(self, data, times): 
             self.mpl.axes.hist(data, bins = (len(data)), range=(0, times), density=False )
-            self.mpl.draw()   #将图形输出到界面上
+            self.mpl.draw() 
             
 
-#        def plot(self, data):  #网上抄的画图，两条曲线。
-#            x_array = np.linspace(1, len(data), len(data))
-#            self.mpl.axes.plot(x_array,data)   #生成COS图
-#            self.mpl.draw()   #将图形输出到界面上
+        def plot(self, data):  
+            x_array = np.linspace(1, len(data), len(data))
+            self.mpl.axes.plot(x_array,data)   
+            self.mpl.draw()   
+            for i in range(len(data)):
+                data[i] = 1 - data[i] 
+            self.mpl.axes.plot(x_array,data)   
+            self.mpl.draw()    
             
         def clear_plot(self):
             self.mpl.axes.cla()  #清除全部绘图
