@@ -37,7 +37,6 @@ class PyPlot(QWidget):
         def plot_hist(self, data, times): 
             self.mpl.axes.hist(data, bins = (len(data)), range=(0, times), density=False )
             self.mpl.draw() 
-            
 
         def plot(self, data):  
             x_array = np.linspace(1, len(data), len(data))
