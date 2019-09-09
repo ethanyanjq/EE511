@@ -3,7 +3,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QMainWindow
 
 import numpy as np
 
@@ -69,7 +69,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
                 if (random_num>=0.5): k += 1
                 i += 1
             else:
-                self.textBrowser.append("Reached user-specified number of head after %d times of tossing" %(i))
+                self.textBrowser.append("Reached user-specified number of head after 【%d】 times of tossing" %(i))
         else:
             self.PyPlot.clear_plot()
             times = int(self.lineEdit.text())
@@ -128,8 +128,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, PyPlot):
         self.lineEdit_4.setText("Input user-specified number of heads here")
         self.textBrowser.append("Input user-specified number and click 'Generate'")
         self.textBrowser.append("You don't need to fill in the blanks on the right")
-
-
+        self.textBrowser.append("===========================")
         
 if __name__ == "__main__":
     import sys
