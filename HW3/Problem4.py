@@ -36,6 +36,8 @@ for j in range(100):
             sum[j] = i+1
             break
 print(sum)
+print("The mean is: " + str(np.mean(sum)))
+print("The variance is: " + str(np.var(sum)))
 sum_hst = list(set(sum))
 plt.hist(sum, bins = len(sum_hst))
 plt.show()
