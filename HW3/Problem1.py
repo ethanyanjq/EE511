@@ -27,7 +27,7 @@ for i in range(N):
     total_time = 0
     success_detect = 0
     for j in range(rep):
-        seq = seq_generate(125, 100)
+        seq = seq_generate(125, 5)
         total_time += 1
         if 1 in seq[0:i]:
             success_detect += 1
