@@ -1,4 +1,3 @@
-import math
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -14,8 +13,9 @@ def sample_sum(n):
         n_seq.append(k)
     return n_seq
     
-a = sample_sum(10000)
-print(np.mean(a))
+a = sample_sum(10000) 
+#The input argument here stands for smallest number of samples
+print("The mean of array n is: "+ str(np.mean(a)))
 plt.hist(a)
 plt.show()
 
