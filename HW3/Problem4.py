@@ -19,15 +19,15 @@ def prob_pos(cdf, prob):
             #We classify it to i+1 and since array starts from 0,i+1 has to plus 1
 
 cdf = cdf_60(10)
-####
-#list_dist = []
-#for i in range(10000):
-#    random_num = np.random.uniform(0, cdf[59])
-#    list_dist.append(prob_pos(cdf, random_num))
-#hist_dist_bins = list(set(list_dist))
-#plt.hist(list_dist, bins = len(hist_dist_bins))
-#plt.show()
-#### The above used to generate histogram
+###
+list_dist = []
+for i in range(10000):
+    random_num = np.random.uniform(0, cdf[59])
+    list_dist.append(prob_pos(cdf, random_num))
+hist_dist_bins = list(set(list_dist))
+plt.hist(list_dist, bins = len(hist_dist_bins))
+plt.show()
+### The above used to generate histogram
 sum = [0]*100
 for j in range(100):
     for i in range(2000):

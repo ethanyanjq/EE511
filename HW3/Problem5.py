@@ -19,5 +19,4 @@ plt.hist(accepted, density = 1)
 x = np.linspace(0, 20, 20)
 plt.bar(x, dis, color = 'r', alpha = 0.2, width = 0.8)
 plt.show()
-
-        
+   
