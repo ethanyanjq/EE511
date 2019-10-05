@@ -18,12 +18,18 @@ def arrival_generate(n):
   
 def main_func(arrival_seq):
     lower_pointer = 0
-    higher_pointer = 0.3 * np.random.rand()
+    higher_pointer = 0 #0.3 * np.random.rand()
     interval = []
     index = []
     while(higher_pointer < ceil(arrival_seq[-1])):
-        interval_count = len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
-        if 
+        while(true):
+            higher_pointer += 0.3 * np.random.rand()
+            if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0):
+                interval.append(higher_pointer - lower_pointer)
+                break
+            
+#        interval_count = len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
+    
  
 x = arrival_generate(10)
 print(x)
