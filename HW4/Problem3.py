@@ -46,4 +46,3 @@ lower_bound = mean - (std_dev/math.sqrt(15))*t
 print(upper_bound, lower_bound)
 bs_result = bs_resample(waiting)
 print(bs_result[0], bs_result[1])
-
