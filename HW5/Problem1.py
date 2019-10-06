@@ -24,8 +24,15 @@ def main_func(arrival_seq):
     while(higher_pointer < ceil(arrival_seq[-1])):
         while(true):
             higher_pointer += 0.3 * np.random.rand()
-            if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0):
+            arrival_num = len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
+            if (arrival_num != 0):
                 interval.append(higher_pointer - lower_pointer)
+                lower_pointer = higher_pointer
+                for i in range(arrival_num):
+                    higher_pointer += np.random.exponential(1/25, 1)
+                    if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0):
+                        arrival_num += len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
+                lower_pointer = higher_pointer
                 break
             
 #        interval_count = len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
