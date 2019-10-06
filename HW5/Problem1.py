@@ -20,15 +20,14 @@ def main_func(arrival_seq):
     lower_pointer = 0
     higher_pointer = 0 #0.3 * np.random.rand()
     interval = []
-    while(higher_pointer < math.ceil(arrival_seq[-1])):
+    while(higher_pointer < math.ceil(arrival_seq[-1])): 
         higher_pointer += 0.3 * np.random.rand()
         arrival_num = len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
-        if (arrival_num != 0):
+        if (arrival_num != 0): #判断区间内是否有到达的工作，如果有，服务器会在这次休息结束之后处理
             interval.append(higher_pointer - lower_pointer)
-            lower_pointer = higher_pointer
             for i in range(arrival_num):
-                higher_pointer += float(np.random.exponential(1/2, 1))
-                if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0):
+                higher_pointer += float(np.random.exponential(25, 1)) #增加指数分布的处理时间
+                if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0): #如果在处理时间内又来新的了，则任务数再加一
                     arrival_num += len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
             lower_pointer = higher_pointer
     return interval
@@ -38,6 +37,7 @@ for i in range(100):
     x = arrival_generate(10)
     aa.append(sum(main_func(x)))
 print(sum(aa)/len(aa))
+
 #print(x)
 #y = np.linspace(1, len(x), num=len(x))
 #plt.step(x, y)
