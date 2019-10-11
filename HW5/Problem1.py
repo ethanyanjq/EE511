@@ -16,6 +16,7 @@ def arrival_generate(n):
             arrival.pop() #如果跳出循环证明上一个到达时间已经大于下一小时并且已经被加到arrival里，所以要把上次到达删掉
     return arrival
   
+exp_lambda = 25 #Service Time
 def main_func(arrival_seq):
     lower_pointer = 0
     higher_pointer = 0 #0.3 * np.random.rand()
@@ -26,20 +27,19 @@ def main_func(arrival_seq):
         if (arrival_num != 0): #判断区间内是否有到达的工作，如果有，服务器会在这次休息结束之后处理
             interval.append(higher_pointer - lower_pointer)
             for i in range(arrival_num):
-                higher_pointer += float(np.random.exponential(1/25, 1)) #增加指数分布的处理时间
+                higher_pointer += float(np.random.exponential(1/exp_lambda, 1)) #增加指数分布的处理时间
                 if (len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer)) != 0): #如果在处理时间内又来新的了，则任务数再加一
                     arrival_num += len(list(x for x in arrival_seq if lower_pointer< x <= higher_pointer))
             lower_pointer = higher_pointer
     return interval
 
-aa = []
+break_time = []
 for i in range(10):
     x = arrival_generate(10)
-    aa.append(sum(main_func(x)))
-print(sum(aa)/len(aa))
-
+    break_time.append(sum(main_func(x)))
 y = np.linspace(1, len(x), num=len(x))
 plt.step(x, y)
 plt.show()
+print(sum(break_time)/len(break_time))
 
 
