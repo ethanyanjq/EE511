@@ -3,36 +3,41 @@ import math
 import matplotlib.pyplot as plt
 from scipy.special import comb
 
-def error(y,x):
-    y = np.array(y)
-    x = np.array(x)
-    error = ((y - x)**2).sum()
-    return error
-
-N = 100
-trans_matrix = np.zeros((2*N + 1,2*N + 1))
-for i in range (2*N+1):
-    for j in range (2*N+1):
-        trans_matrix[i][j] = comb(2*N, j) * (i/(2*N))**j * (1-i/(2*N))**(2*N-j)
-trans_matrix = np.mat(trans_matrix)
-
-initial_state = [0]*(2*N+1)
-initial_state [N] = 1
-initial_state = np.mat(initial_state)
-error_sum = 1000
-counter = 0
-#while error_sum > 0.000000001:
-#    k = initial_state
-#    initial_state = initial_state * trans_matrix
-#    error_sum = error(k, initial_state)
-#    i += 1
-#
-#print(i)
-
-for i in range(200):
-    initial_state = initial_state * trans_matrix
-print(initial_state)
-
+r_dest = 0.25
+def func(p, total_time):
+    st_queue = []
+    nd_queue = []
+    st_state = []
+    nd_state = []
+    for i in range (total_time):
+        if(len(st_queue)!=0 and len(nd_queue)!=0):
+            if (st_queue[0] == nd_queue[0]):
+                if(np.random.rand()<=0.5):
+                    st_queue.pop(0)
+                else:
+                    nd_queue.pop(0)
+            else:
+                st_queue.pop(0)
+                nd_queue.pop(0)
+        elif (len(st_queue) != 0):
+            st_queue.pop(0)
+        elif (len(nd_queue) != 0):
+            nd_queue.pop(0)
+        
+        rand_gen = np.random.rand(2, 2)
+        if (rand_gen[0][0]<= p):
+            if (rand_gen[0][1]<=r_dest):
+                st_queue.append(1)
+            else:
+                st_queue.append(2)
+        if (rand_gen[1][0]<= p):
+            if (rand_gen[1][1]<=r_dest):
+                nd_queue.append(1)
+            else:
+                nd_queue.append(2)
+        st_state.append(len(st_queue))
+        nd_state.append(len(nd_queue))
+    return (np.mean(st_state), np.mean(nd_state))
     
-
-
+a = func(0.99, 1000)
+print(a)
