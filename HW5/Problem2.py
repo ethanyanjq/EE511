@@ -1,9 +1,8 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-from scipy.special import comb
 
-r_dest = 0.25
+r_dest = 0.75
 def func(p, total_time):
     st_queue = []
     nd_queue = []
@@ -38,6 +37,18 @@ def func(p, total_time):
         st_state.append(len(st_queue))
         nd_state.append(len(nd_queue))
     return (np.mean(st_state), np.mean(nd_state))
-    
-a = func(0.99, 1000)
-print(a)
+  
+p = np.linspace(0,1,101)
+x1 = []
+x2 = []
+for i in range(len(p)):
+    temp = func(p[i], 1000)
+    x1.append(temp[0])
+    x2.append(temp[1])
+plt.plot(p, x1)
+plt.plot(p, x2)
+plt.xlabel("Value of p")
+plt.ylabel("Expected number of packets in buffer")
+plt.show()
+
+
