@@ -17,10 +17,9 @@ for i in range (2*N+1):
 trans_matrix = np.mat(trans_matrix)
 
 initial_state = [0]*(2*N+1)
-initial_state [N] = 1
+initial_state [2*N] = 0.5
+initial_state [0] = 0.5
 initial_state = np.mat(initial_state)
-error_sum = 1000
-counter = 0
 #while error_sum > 0.000000001:
 #    k = initial_state
 #    initial_state = initial_state * trans_matrix
@@ -28,10 +27,16 @@ counter = 0
 #    i += 1
 #
 #print(i)
-
-for i in range(200):
+variance = []
+for i in range(1000):
     initial_state = initial_state * trans_matrix
+    variance.append(np.var(initial_state))
 print(initial_state)
+x = np.linspace(1, 1000, 1000)
+plt.plot(x, variance)
+plt.xlabel("Times of experiment")
+plt.ylabel("Variance")
+plt.show()
 
     
 
