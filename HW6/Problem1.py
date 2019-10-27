@@ -2,6 +2,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+import time
 
 def theoretical(x,mu,sigma):
     pdf = np.exp(-((x - mu)**2)/(2*sigma**2))/(sigma * np.sqrt(2*np.pi))
@@ -20,11 +21,13 @@ def Generate (n, n1, n2, d1, d2):
         Y_seq.append(Y_temp * (d2)**0.5 + n2)
         Sum.append(X_temp * (d1)**0.5 + n1 + Y_temp * (d2)**0.5 + n2)
     return (X_seq, Y_seq, Sum)
-    
-result = Generate(10000, 1, 2, 4, 9)
-plt.hist(result[2], density = 1, bins = 300, alpha = 0.9, label = 'N(1,4)+N(2,9)')
+start = time.time()      
+result = Generate(1000000, 1, 2, 4, 9)
+end = time.time()
+print ("The computational time of Box-Muller method is {} seconds".format(end - start))
+plt.hist(result[2], density = 1, bins = 200, alpha = 0.9, label = 'N(1,4)+N(2,9)')
 
-x = np.arange(-40,40,0.1)
+x = np.arange(-20,20,0.1)
 y = theoretical(x, 3, 13**0.5)
 plt.plot(x,y, color='r',linewidth = 2, label = 'Theoretical pdf')
 plt.legend()
