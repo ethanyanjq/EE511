@@ -27,5 +27,5 @@ def alpha_stable_generate(alpha, beta, n):
     return seq
 
 a = alpha_stable_generate(2, 0, 2000)
-plt.hist(a, bins = len(list(set(a))))
+plt.hist(a, bins = 100)
 plt.show()
