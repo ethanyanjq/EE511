@@ -24,10 +24,11 @@ def gamma_dist(a, b):
 a = gamma_dist(5.5,1)
 x = np.linspace(0, 25, 200)
 print(x)
-plt.plot(x, a)
+plt.plot(x, a,label = 'The gamma distribution')
 
 lambd = 0.3
 x = np.linspace(0, 25, 200)
 y = lambd*np.exp(-lambd*(x-4))
-plt.plot(x,y)
+plt.plot(x,y,label = 'Envelope function with exponential dist')
+plt.legend()
 plt.show()

@@ -26,6 +26,15 @@ def alpha_stable_generate(alpha, beta, n):
             seq.append(left * right)
     return seq
 
-a = alpha_stable_generate(2, 0, 2000)
-plt.hist(a, bins = 100)
+a = alpha_stable_generate(0.5, 0, 1000)
+plt.hist(a, label = "α=0.5", alpha = 0.9, bins = 30)
+
+import numpy as np
+from scipy.stats import levy_stable
+import matplotlib.pyplot as plt
+N = 1000
+alpha, beta = 0.5, 0
+r = levy_stable.rvs(alpha, beta, size=N, scale = 1)
+plt.hist(r, alpha = 0.5, bins = 30, label = "Theoretical")
+plt.legend()
 plt.show()
