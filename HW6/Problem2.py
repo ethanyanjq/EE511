@@ -40,7 +40,7 @@ for i in range(N):
 print("The efficiency of accept and reject is {}".format(accept/N))   
 plt.hist(y, density = 1, bins = 100)
 
-a = gamma_list(5.5,1.28)
+a = gamma_list(5.5,1.3)
 x = np.linspace(0, 25, 200)
 plt.plot(x, a)
 plt.show()
