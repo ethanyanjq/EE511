@@ -12,7 +12,14 @@ def gaussian(x, mean, cov):
     return (1/ (np.sqrt((2*np.pi)**d*np.linalg.det(cov)))* 
             np.exp(-np.dot(temp1, x1_T)/2))
             
-a = gaussian([3, 3, 3], [1, 2, 3], [[3, -1, 1], [-1, 5, 3], [1, 3, 4]])
-print(a)
+mean = [1, 2, 3]
+cov = [[3, -1, 1], [-1, 5, 3], [1, 3, 4]]
+vector_list = []
+for i in range(100):
+        a = 20*np.random.rand(3) - 10
+        if ( gaussian(a, mean, cov) <  1/(20*20*20)):
+            vector_list.append(a.tolist())
+print(vector_list)
+        
 
 
