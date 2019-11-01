@@ -15,11 +15,19 @@ def gaussian(x, mean, cov):
 mean = [1, 2, 3]
 cov = [[3, -1, 1], [-1, 5, 3], [1, 3, 4]]
 vector_list = []
-for i in range(100):
+for i in range(10):
         a = 20*np.random.rand(3) - 10
         if ( gaussian(a, mean, cov) <  1/(20*20*20)):
             vector_list.append(a.tolist())
 print(vector_list)
+
+x = [w[0] for w in vector_list]
+y = [w[1] for w in vector_list]
+z = [w[2] for w in vector_list]
+
+print(x)
+
+
         
 
 
