@@ -1,31 +1,24 @@
-import numpy as np 
 import matplotlib.pyplot as plt
+import numpy as np
 
-def gaussian(x, mean, cov):
-    d = len(x)
-    x1 = np.array(x) - np.array(mean)
-    x1_T = x1.T
-    x1_T = x1_T.tolist()
-    x1 = x1.tolist()
-    inv = np.linalg.inv(cov)
-    temp1 = np.dot(x1, inv)
-    return (1/ (np.sqrt((2*np.pi)**d*np.linalg.det(cov)))* 
-            np.exp(-np.dot(temp1, x1_T)/2))
-            
-mean = [1, 2, 3]
-cov = [[3, -1, 1], [-1, 5, 3], [1, 3, 4]]
-vector_list = []
-for i in range(10):
-        a = 20*np.random.rand(3) - 10
-        if ( gaussian(a, mean, cov) <  1/(20*20*20)):
-            vector_list.append(a.tolist())
-print(vector_list)
+def f(x,y):
+    p = []
+    for i in range(len(x)):
+        for j in range(len(y)):
+            p.append(x[i]+y[j])
+    p = np.array(p)
+    p = p.reshape((10,-1))
+    print(p.shape[0])
+    return p
 
-x = [w[0] for w in vector_list]
-y = [w[1] for w in vector_list]
-z = [w[2] for w in vector_list]
-
-print(x)
+n = 10
+x = np.linspace(-3, 3, n)
+y = np.linspace(-3, 3, n)
+X,Y = np.meshgrid(x, y)
+# use plt.contourf to filling contours
+# X, Y and value for (X,Y) point
+plt.contourf(X, Y, f(x, y), 8, alpha=.75, cmap=plt.cm.hot)
+plt.show(0)
 
 
         

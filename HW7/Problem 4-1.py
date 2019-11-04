@@ -52,9 +52,9 @@ def center_update(dots, classify):
             sum_1_y += dots[i][1]
             count_1 += 1
     return [[sum_0_x/count_0, sum_0_y/count_0], [sum_1_x/count_1, sum_1_y/count_1]]
-
+        
 workbook = xlrd.open_workbook(r'data.xlsx')
-sheet = workbook.sheet_by_index(0)
+sheet = workbook.sheet_by_index(1)
 data = []
 for i in range(sheet.nrows):
     data.append(sheet.row_values(i))
@@ -65,9 +65,8 @@ print(init_center)
 for i in range(100):
     a = dot2center(data, init_center)
     b = classify(a)
-    c = center_update(data, b)
-    init_center = c
-print(c)   
+    init_center = center_update(data, b)
+print(init_center)   
 
 class0_x = []
 class0_y = []
