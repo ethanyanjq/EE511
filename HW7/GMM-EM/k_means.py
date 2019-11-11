@@ -52,36 +52,21 @@ def center_update(dots, classify):
             sum_1_y += dots[i][1]
             count_1 += 1
     return [[sum_0_x/count_0, sum_0_y/count_0], [sum_1_x/count_1, sum_1_y/count_1]]
-        
-workbook = xlrd.open_workbook(r'data.xlsx')
-sheet = workbook.sheet_by_index(0)
-data = []
-for i in range(sheet.nrows):
-    data.append(sheet.row_values(i))
-    
-init_center = init_center(data, 2)
-print(init_center)
 
-for i in range(100):
-    a = dot2center(data, init_center)
-    b = classify(a)
-    init_center = center_update(data, b)
-print(init_center)   
+def main_func():        
+    workbook = xlrd.open_workbook(r'data.xlsx')
+    sheet = workbook.sheet_by_index(0)
+    data = []
+    for i in range(sheet.nrows):
+        data.append(sheet.row_values(i))
+    global init_center    
+    init_center = init_center(data, 2)
 
-class0_x = []
-class0_y = []
-class1_x = []
-class1_y = []
-for i in range(len(data)):
-    if (b[i] == 0):
-        class0_x.append(data[i][0])
-        class0_y.append(data[i][1])
-    else:
-        class1_x.append(data[i][0])
-        class1_y.append(data[i][1])
-plt.scatter(class0_x, class0_y)
-plt.scatter(class1_x, class1_y)
-plt.show()
+    for i in range(100):
+        a = dot2center(data, init_center)
+        b = classify(a)
+        init_center = center_update(data, b)
+    return init_center   
 
     
 
