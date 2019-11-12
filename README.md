@@ -1,1 +1,1 @@
-**EE-⑤①① homework scripts with Python and PyQt5**
+**EE-511 homeworks scripts with Python and PyQt5**
