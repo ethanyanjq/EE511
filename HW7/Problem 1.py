@@ -13,6 +13,5 @@ def vector_generate(mu, sigma, n):
 
 mu = np.array([1, 2, 3])
 sigma = np.array([[3, -1, 1], [-1, 5, 3], [1, 3, 4]])
-
 a = vector_generate(mu, sigma, 10)
 print(a)
