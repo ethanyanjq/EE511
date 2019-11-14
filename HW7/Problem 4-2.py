@@ -14,12 +14,9 @@ def contour_plot(x, y, alpha, var1, var2):
     return p.T
 
 
-def initialize(data, k):
+def init(data, k):
     dim = np.shape(data)[1]
-    min_num = np.min(data)
-    max_num = np.max(data)
     alpha = np.ones(k)
-    mu = np.zeros((k, dim))
     sigma = np.zeros((k, dim, dim))
     for num in range(k):
         alpha[num] = 1.0 / float(k)
@@ -36,16 +33,16 @@ def guassian(x, mu, sigma):
     return coefficent
 
 
-def gmm_em(data, weight, mu, sigma):
+def EM_Algorithm(data, weight, mu, sigma):
     series = np.empty_like(data)
     while True:
         temp_sigma = sigma.copy()
-        for num in range(K):
+        for num in range(2):
             series[:, num] = guassian(data, mu[num, :], sigma[num, :, :])
         series = series * weight
         guass_array_sum = (np.sum(series, axis=1)).reshape(len(series), 1)
         series = series / guass_array_sum
-        for row in range(K):
+        for row in range(2):
             temp = 0
             weight[row] = np.sum(series[:, row]) / len(data)
             mu[row, :] = np.sum(series[:, row].reshape(len(series), 1) * data, axis=0) / np.sum(
@@ -54,8 +51,7 @@ def gmm_em(data, weight, mu, sigma):
                 temp += series[num, row] * np.dot((data[num, :] - mu[row, :]).reshape(len(mu[row, :]), 1),
                                                   (data[num, :] - mu[row, :]).reshape(1, len(mu[row, :])))
                 sigma[row, :, :] = temp / np.sum(series[:, row])
-        if (abs(sigma - temp_sigma) < 1e-8).all():
-            break
+        if (abs(sigma - temp_sigma) < 1e-8).all():break
     return weight, mu, sigma
 
 cov1 = np.mat("0 0.2;0.2 0.1")
@@ -64,11 +60,10 @@ mu1 = np.array([0.3, 0.5])
 mu2 = np.array([1, -0.5])
 
 data = np.loadtxt("original_data.txt")
-K = 2
-init_alpha, init_mu, init_sigma = initialize(data, K)
-alpha, mu, sigma = gmm_em(data, init_alpha, init_mu, init_sigma)
+init_alpha, init_mu, init_sigma = init(data, 2)
+alpha, mu, sigma = EM_Algorithm(data, init_alpha, init_mu, init_sigma)
 
-for num in range(K):
+for num in range(2):
     print("The weight of model %d is: %.3f, mean is :%s,\n cov is :\n%r" % (num + 1, alpha[num], mu[num], sigma[num]))
 n = 100
 x = np.linspace(1, 5.5, n)
