@@ -2,7 +2,7 @@ import numpy as np
 import math
 
 N = 1000
-x = [[1], [2], [3]]
+x = [[3], [3], [3]]
 for i in range(N):
     m = math.floor(3 * np.random.rand())
     sum = 0
