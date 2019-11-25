@@ -10,7 +10,7 @@ for i in range(N):
     e.remove(m)
     for i in e:
         sum += (i+1)*x[i][-1]
-    rest = 15 - sum
+    rest = 15    - sum
     while 1:
         temp = np.random.exponential(1)
         if temp * (m+1) > rest: break
