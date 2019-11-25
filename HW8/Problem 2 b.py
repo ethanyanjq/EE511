@@ -8,8 +8,8 @@ for i in range(N):
     sum = 0
     e = [0,1,2]
     e.remove(m)
-    for i in e:
-        sum += (i+1)*x[i][-1]
+    for j in e:
+        sum += (j+1)*x[j][-1]
     rest = 1 - sum
     while 1:
         temp = np.random.exponential(1)
