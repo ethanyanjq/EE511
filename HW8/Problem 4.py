@@ -8,7 +8,7 @@ def judge(d, t):
     if d < 0:
         out_put = 1
     else:
-        d = math.exp(-d / (10*t)) #parameter 1
+        d = math.exp(-d / (50*t)) #parameter 1
         if d > np.random.rand():
             out_put = 1
         else:
@@ -23,13 +23,21 @@ def dist(states):
     return dist_sum
 
 
-def new_solve(states):
+def switch(states):
     states = states
     cities2 = states.copy()
     while 1:
+        # cit1 = math.ceil(np.random.rand() * (states.shape[1]))
+        # factor = math.ceil(np.random.normal(0,4))
+        # if cit1 - abs(factor) < 1 or cit1 + abs(factor) > (states.shape[1] - 1):
+        #     break
+        # elif abs(np.random.normal(0, 1)) > 1: break
+        # temp = cities2[:, cit1].copy()
+        # cities2[:, cit1] = cities2[:, cit1 + factor].copy()
+        # cities2[:, cit1 + factor] = temp.copy()
         cit1 = math.ceil(np.random.rand() * (states.shape[1] - 1))
         cit2 = math.ceil(np.random.rand() * (states.shape[1] - 1))
-        if abs(np.random.normal(0, 1)) > 0.3: break
+        if abs(np.random.normal(0, 1)) > 1: break
         temp = cities2[:, cit1].copy()
         cities2[:, cit1] = cities2[:, cit2].copy()
         cities2[:, cit2] = temp.copy()
@@ -38,11 +46,11 @@ def new_solve(states):
 
 states = np.loadtxt('states.txt')
 np.random.shuffle(states)
+CA = np.array([[38.555605, 18.531074]])
+states = np.concatenate((CA, states),axis=0)
 states = states.T
-#plt.plot(states[0], states[1])
-#plt.show()
 
-tmp, min_temp = 1e5, 1
+tmp, min_temp = 1e4, 1e-3
 s_old = dist(states)
 cit_new = states
 s_new = s_old
@@ -51,7 +59,7 @@ counter, t = 0, 0
 plt.ion()
 while tmp > min_temp:
     plt.clf()
-    cit_new = new_solve(states)
+    cit_new = switch(states)
     s_new = dist(cit_new)
     dE = (s_new - s_old) * 1  #parameter 2
     j = judge(dE, tmp)
@@ -59,12 +67,13 @@ while tmp > min_temp:
         states = cit_new
         s_old = s_new
     if dE < 0:
-        counter = 0
-        tmp = 1e5/(1+t)
-        plt.plot(states[0], states[1])
-        plt.pause(0.005)
-    else:
-        counter += 1
+        # counter = 0
+        tmp = 1e4/(1+t)
+        text = 'Temperature is ' + str(tmp)
+        plt.plot(states[1], states[0])
+        plt.pause(0.001)
+    # else:
+    #     counter += 1
     t += 1
 
 plt.ioff()
