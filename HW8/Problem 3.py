@@ -9,7 +9,7 @@ def judge(d, t):
     if d < 0:
         out_put = 1
     else:
-        d = math.exp(-d/(15*t))
+        d = math.exp(-d/(5*t))
         if d > np.random.rand():
             out_put = 1
         else:
@@ -33,11 +33,11 @@ s_old = func_calculation(x_old, y_old)
 s_new = s_old
 
 while temp > min_temp:
-    delta = np.random.normal(0, 150)
+    delta = np.random.normal(0, 200)
     x_new = x_old + delta
     if x_new < lower_bound or x_new > upper_bound:
         x_new = x_new - delta
-    delta = np.random.normal(0, 150)
+    delta = np.random.normal(0, 200)
     y_new = y_old + delta
     if y_new < lower_bound or y_new > upper_bound:
         y_new = y_new - delta
@@ -50,13 +50,13 @@ while temp > min_temp:
         x_old = x_new
         y_old = y_new
     if dE < 0:
-        temp = 1e3 / (1 + t)
+        temp = 5e3 / (1 + t)
     else:
         counter += 1
     t += 1
     plt.scatter([x_old], [y_old], marker='x', c='#DC143C')
-    if counter > 1e3:
-        break
+    # if counter > 1e3:
+    #     break
 
 plt.show()
 print(x_old, y_old, s_old)
