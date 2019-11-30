@@ -8,15 +8,15 @@ for i in range(N):
     sum = 0
     e = [0, 1, 2]
     e.remove(m)
-<<<<<<< HEAD
+
     for i in e:
         sum += (i+1)*x[i][-1]
-    rest = 15    - sum
-=======
+    rest = 15 - sum
+
     for j in e:
         sum += (j + 1) * x[j][-1]
     rest = 15 - sum
->>>>>>> 852cb7a13edf027467dd62861687fcf8b5a5c6c8
+
     while 1:
         temp = np.random.exponential(1)
         if temp * (m + 1) > rest: break
