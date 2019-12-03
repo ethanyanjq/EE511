@@ -37,6 +37,8 @@ Z = 837.9658 - X * np.sin(np.sqrt(abs(X))) - Y * np.sin(np.sqrt(abs(Y)))
 
 plt.figure(num=None,dpi=100)
 plt.contourf(X,Y,Z)
+plt.pause(1)
+
 while temp > min_temp:
     delta = np.random.normal(0, 200)
     x_new = x_old + delta
