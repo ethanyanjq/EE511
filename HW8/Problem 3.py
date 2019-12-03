@@ -7,7 +7,7 @@ def judge(diff, t):
     if diff < 0:
         out_put = 1
     else:
-        diff = math.exp(-diff / (1 * t))
+        diff = math.exp(-diff / (10 * t))
         if diff > np.random.rand():
             out_put = 1
         else:
@@ -32,8 +32,8 @@ s_new = s_old
 
 plt.ion()
 N_r = 500
-x = np.linspace(-N_r, N_r, 100)
-y = np.linspace(-N_r, N_r, 100)
+x = np.linspace(-N_r, N_r, 300)
+y = np.linspace(-N_r, N_r, 300)
 X, Y = np.meshgrid(x, y)
 Z = 837.9658 - X * np.sin(np.sqrt(abs(X))) - Y * np.sin(np.sqrt(abs(Y)))
 
