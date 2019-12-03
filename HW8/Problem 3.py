@@ -2,16 +2,18 @@ import matplotlib.pyplot as plt
 import math
 import numpy as np
 
-def judge(d, t):
-    if d < 0:
+
+def judge(diff, t):
+    if diff < 0:
         out_put = 1
     else:
-        d = math.exp(-d/(3*t))
-        if d > np.random.rand():
+        diff = math.exp(-diff / (3 * t))
+        if diff > np.random.rand():
             out_put = 1
         else:
             out_put = 0
     return out_put
+
 
 def func_calculation(x, y):
     return 837.9658 - x * math.sin(math.sqrt(abs(x))) - y * math.sin(math.sqrt(abs(y)))
@@ -30,13 +32,13 @@ s_new = s_old
 
 plt.ion()
 N_r = 500
-x = np.linspace(-N_r,N_r,100)
-y = np.linspace(-N_r,N_r,100)
+x = np.linspace(-N_r, N_r, 100)
+y = np.linspace(-N_r, N_r, 100)
 X, Y = np.meshgrid(x, y)
 Z = 837.9658 - X * np.sin(np.sqrt(abs(X))) - Y * np.sin(np.sqrt(abs(Y)))
 
-plt.figure(num=None,dpi=100)
-plt.contourf(X,Y,Z)
+plt.figure(num=None, dpi=100)
+plt.contourf(X, Y, Z)
 plt.pause(1)
 
 while temp > min_temp:
@@ -61,8 +63,8 @@ while temp > min_temp:
     t += 1
     plt.scatter([x_old], [y_old], marker='x', c='#DC143C')
     plt.pause(0.001)
-    # if counter > 1e3:
-    #     break
+    if counter > 50:
+        break
 
 plt.ioff()
 plt.show()
