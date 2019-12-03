@@ -7,7 +7,7 @@ def judge(diff, t):
     if diff < 0:
         out_put = 1
     else:
-        diff = math.exp(-diff / (3 * t))
+        diff = math.exp(-diff / (1 * t))
         if diff > np.random.rand():
             out_put = 1
         else:
@@ -63,8 +63,8 @@ while temp > min_temp:
     t += 1
     plt.scatter([x_old], [y_old], marker='x', c='#DC143C')
     plt.pause(0.001)
-    if counter > 50:
-        break
+##    if counter > 50:
+##        break
 
 plt.ioff()
 plt.show()
