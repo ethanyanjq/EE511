@@ -8,6 +8,13 @@ def func(N):
         sum += np.exp(5 * abs(x - 5) + 5 * abs(y - 5))
     return sum / N
 
+s = []
+for i in range(5):
+    print(func(100))
+for i in range(50):
+    s.append(func(1000))
+print(np.var(s))
+
 def func1(N):
     sum = 0
     for i in range(N):
@@ -15,4 +22,10 @@ def func1(N):
         sum += math.cos(math.pi + 5*x + 5*y)
     return 2*2*sum/N
 
-print(func(1000))
+
+b = []
+for i in range(5):
+    print(func1(100))
+for i in range(50):
+    b.append(func1(1000))
+print(np.var(b))

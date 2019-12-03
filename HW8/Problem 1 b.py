@@ -19,7 +19,7 @@ def func(N):
             i += 1
     return sum / N
 
-print(func(1000))
+
 
 
 def func1(N):
@@ -33,4 +33,10 @@ def func1(N):
                 y0 = y0/10 + j
                 sum += (np.exp(5 * abs(x0 - 5) + 5 * abs(y0 - 5)))/N
     return sum
-print(func1(1000))
+
+s = []
+for i in range(5):
+    print(func1(100))
+for i in range(50):
+    s.append(func1(1000))
+print(np.var(s))
