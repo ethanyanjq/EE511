@@ -8,7 +8,7 @@ def judge(d, t):
     if d < 0:
         out_put = 1
     else:
-        d = math.exp(-d / 5*(t)) #parameter 1
+        d = math.exp(-d / 100*(t)) #parameter 1
         if d > np.random.rand():
             out_put = 1
         else:
@@ -37,7 +37,7 @@ def switch(states):
 ##        cities2[:, cit1 + factor] = temp.copy()
         cit1 = math.ceil(np.random.rand() * (states.shape[1] - 1))
         cit2 = math.ceil(np.random.rand() * (states.shape[1] - 1))
-        if abs(np.random.normal(0, 1)) > 0.5: break
+        if abs(np.random.normal(0, 1)) > 1: break
         temp = cities2[:, cit1].copy()
         cities2[:, cit1] = cities2[:, cit2].copy()
         cities2[:, cit2] = temp.copy()
