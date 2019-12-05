@@ -8,7 +8,7 @@ def judge(d, t):
     if d < 0:
         out_put = 1
     else:
-        d = math.exp(-d / 100*(t)) #parameter 1
+        d = math.exp(-d / 5*(t)) #parameter 1
         if d > np.random.rand():
             out_put = 1
         else:
